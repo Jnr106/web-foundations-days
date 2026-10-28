@@ -1,0 +1,7 @@
+# Course Reflection
+
+The most difficult concept for me was JavaScript. I am still learning how variables, functions, arrays, and event listeners work together to make a page interactive. Working through examples step by step and checking results in the browser helped me make progress. Reading Console errors and reviewing the relevant code helped me find mistakes. I have not mastered JavaScript yet, but I understand that improvement requires regular practice.
+
+I have not received feedback on my capstone yet, so I cannot identify an improvement based on audience feedback. From my own experience, I would improve my ability to explain the code and design decisions independently. I would also rehearse the demonstration more, including how the app handles errors, so I can present with greater confidence.
+
+My next goal is to practise HTML, CSS, JavaScript, APIs, SQL, and system design consistently. I want to rebuild small features without following a complete solution, try solving problems myself first, and use documentation and debugging tools before asking AI for help. I want AI to support my learning rather than replace my own thinking. With consistent practice, I hope to become comfortable writing, testing, and explaining my own work.

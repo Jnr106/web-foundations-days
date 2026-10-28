@@ -339,40 +339,25 @@ multiple accounts; anti-abuse controls are also needed.
 
 ```mermaid
 flowchart TD
-    Client["Customer browser"]
-    Edge["CDN and rate limiting"]
-    Waiting["Waiting room"]
-    LB["Redundant load balancer"]
-    App1["Stateless app server 1"]
-    App2["Stateless app server 2"]
-    Cache["Browse and seat-map cache"]
-    Primary["Primary database"]
-    Replica["Read replica / standby"]
-    Provider["Payment provider"]
-    Queue["Durable job queue"]
-    Worker["Background workers"]
+    Client["Customer browser"] --> Edge["CDN and rate limiting"]
+    Edge --> Waiting["Waiting room"]
+    Waiting --> LB["Load balancer"]
+    LB --> App1["App server 1"]
+    LB --> App2["App server 2"]
 
-    Client --> Edge
-    Edge -->|"Browsing and admitted checkout"| LB
-    Edge -->|"Major-sale admission"| Waiting
-    Waiting -->|"Signed admission token"| Client
-
-    LB --> App1
-    LB --> App2
-    App1 --> Cache
+    App1 --> Cache["Shared cache"]
     App2 --> Cache
-    App1 -->|"Holds, orders, tickets"| Primary
-    App2 -->|"Holds, orders, tickets"| Primary
-    Primary -->|"Replication"| Replica
-    App1 -->|"Suitable browsing reads"| Replica
-    App2 -->|"Suitable browsing reads"| Replica
-    App1 --> Provider
-    App2 --> Provider
-    App1 --> Queue
+    App1 --> Primary["Primary database"]
+    App2 --> Primary
+    Primary --> Replica["Read replica"]
+
+    App1 --> Payment["Payment provider"]
+    App2 --> Payment
+    App1 --> Queue["Durable job queue"]
     App2 --> Queue
-    Queue --> Worker
+    Queue --> Worker["Background workers"]
     Worker --> Primary
-    Worker --> Provider
+    Worker --> Payment
 ```
 
 ### Component Responsibilities
@@ -494,3 +479,4 @@ for help, and use documentation and debugging tools more
 often. My goal is to use AI as support for understanding,
 while developing the confidence to write and explain my
 own work.
+
